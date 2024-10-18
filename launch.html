@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Launch Visualizer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="launch.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="main-title">Computer Science Topics</h1>
+      <div class="cards-container">
+        <div class="card" data-topic="algorithm">
+          <h2>Analysis of Algorithm</h2>
+          <div class="animation-container"></div>
+          <p>Evaluates the efficiency of algorithms in terms of time and space complexity, using metrics like Big O notation to determine performance.</p>
+          <button class="learn-btn" onclick="window.location.href='sorting.html'">
+            Let's learn <i class="fas fa-arrow-right"></i>
+        </button>
+        
+        </div>
+        <div class="card" data-topic="os">
+          <h2>Operating Systems</h2>
+          <div class="animation-container"></div>
+          <p>Manages hardware and software resources, facilitating process execution, memory allocation, and user interaction with devices.</p>
+          <button class="learn-btn" onclick="window.location.href='schedule.html'">
+            Let's learn <i class="fas fa-arrow-right"></i>
+        </button>
+        </div> 
+        <div class="card" data-topic="networking">
+          <h2>Computer Networking</h2>
+          <div class="animation-container"></div>
+          <p>Focuses on communication between computer systems, utilizing protocols for data exchange and ensuring secure connections.</p>
+          <button class="learn-btn" window.location.href = 'yourfile.html'>Let's learn <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="card" data-topic="ai">
+          <h2>Artificial Intelligence</h2>
+          <div class="animation-container"></div>
+          <p>Develops systems that simulate human intelligence, including machine learning, natural language processing, and robotics to perform complex tasks.</p>
+          <button class="learn-btn" window.location.href = 'yourfile.html'>Let's learn <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

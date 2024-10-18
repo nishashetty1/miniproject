@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Process Scheduler</title>
+    <style>
+      :root {
+        --bg: #000000;
+        --text: #ffffff;
+        --accent: #ff6f91;
+        --prim: #1e90ff;
+        --sec: #8a2be2;
+        --card-bg: #1a1a1a;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+      }
+
+      .controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      input,
+      button,
+      select {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--sec);
+        color: var(--text);
+        font-size: 16px;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      button {
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: var(--accent);
+      }
+
+      .visualizers {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .visualizer {
+        border: 1px solid var(--prim);
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+      .process-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .process-table th,
+      .process-table td {
+        border: 1px solid var(--prim);
+        padding: 10px;
+        text-align: center;
+      }
+
+      .process-table th {
+        background-color: var(--sec);
+      }
+
+      #ganttChart {
+        display: flex;
+        height: 50px;
+        margin-top: 20px;
+    }
+    .process-bar, .idle-bar {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--bg);
+        font-weight: bold;
+    }
+    .idle-bar {
+        background-color: #ccc;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Process Scheduler Visualizer</h1>
+      <div class="controls">
+        <input
+          type="text"
+          id="processNameInput"
+          placeholder="Enter Process Name"
+        />
+        <input
+          type="number"
+          id="arrivalTimeInput"
+          placeholder="Enter Arrival Time"
+        />
+        <input
+          type="number"
+          id="burstTimeInput"
+          placeholder="Enter Burst Time"
+        />
+        <input
+          type="number"
+          id="priorityInput"
+          placeholder="Enter Priority (for Priority Scheduling)"
+        />
+        <input
+          type="number"
+          id="timeQuantumInput"
+          placeholder="Enter Time Quantum (for Round Robin)"
+          style="display: none"
+        />
+        <button id="randomProcessBtn">Generate Random Process</button>
+        <select id="schedulerSelect">
+          <option value="fcfs">First Come First Serve</option>
+          <option value="sjf">Shortest Job First</option>
+          <option value="priority">Priority Scheduling</option>
+          <option value="rr">Round Robin</option>
+        </select>
+       
+        <button id="startBtn">Start Scheduling</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+
+      <div class="visualizers">
+        <button id="stepBtn">Step</button>
+        <div id="ganttChart"></div>
+        <div id="statusInfo"></div>
+        <div class="visualizer">
+          <h2 id="schedulerTitle">Process Scheduler</h2>
+          <table class="process-table" id="processTable">
+            <thead>
+              <tr>
+                <th>Process Name</th>
+                <th>Arrival Time</th>
+                <th>Burst Time</th>
+                <th>Priority</th>
+              </tr>
+            </thead>
+            <tbody id="processTableBody">
+              <!-- Dynamic Process Entries -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+   <script src="schedule.js"></script>
+  </body>
+</html>

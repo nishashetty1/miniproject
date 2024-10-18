@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IP Address Validator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e0e7ff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        .container label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        
+        .container input {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: #f9fafb;
+        }
+
+        .container input:focus {
+            border-color: #4f46e5;
+            outline: none;
+            box-shadow: 0 0 10px rgba(79, 70, 229, 0.2);
+        }
+
+        .container p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        #valid {
+            background-color: #e0e7ff;
+            color: #1e3a8a;
+        }
+
+        #valid.Valid {
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+
+        #valid.Invalid {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #ef4444;
+        }
+
+        #masked {
+            background-color: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .container p {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px;
+            }
+
+            .container label,
+            .container input,
+            .container p {
+                font-size: 0.95rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="ip">Enter an IP Address:</label>
+        <input type="text" id="ip" />
+        <p id="valid"></p>
+        <p id="masked"></p>
+    </div>
+    <script>
+        function isValidIP(ip) {
+            const pattern = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+            return pattern.test(ip);
+        }
+
+        function getIPClass(ip) {
+            const octets = ip.split('.').map(Number);
+            const firstOctet = octets[0];
+
+            if (firstOctet >= 0 && firstOctet <= 127) return 'Class A';
+            if (firstOctet >= 128 && firstOctet <= 191) return 'Class B';
+            if (firstOctet >= 192 && firstOctet <= 223) return 'Class C';
+            if (firstOctet >= 224 && firstOctet <= 239) return 'Class D';
+            if (firstOctet >= 240 && firstOctet <= 255) return 'Class E';
+            return 'Unknown Class';
+        }
+
+        function applySubnetMask(ip, mask) {
+            const ipOctets = ip.split('.').map(Number);
+            const maskOctets = mask.split('.').map(Number);
+            const resultOctets = ipOctets.map((octet, index) => octet & maskOctets[index]);
+            return resultOctets.join('.');
+        }
+
+        function getSubnetMask(ipClass) {
+            switch (ipClass) {
+                case 'Class A': return '255.0.0.0';
+                case 'Class B': return '255.255.0.0';
+                case 'Class C': return '255.255.255.0';
+                default: return '0.0.0.0';
+            }
+        }
+
+        var input = document.getElementById("ip");
+        var valid = document.getElementById("valid");
+        var masked = document.getElementById("masked");
+
+        input.addEventListener("input", function () {
+            var ip = input.value.trim();
+            if (isValidIP(ip)) {
+                var ipClass = getIPClass(ip);
+                var mask = getSubnetMask(ipClass);
+                var maskedIP = applySubnetMask(ip, mask);
+                valid.innerHTML = `Valid IP - ${ipClass}`;
+                masked.innerHTML = `Masked IP: ${maskedIP} (with subnet mask ${mask})`;
+            } else {
+                valid.innerHTML = "Invalid IP";
+                masked.innerHTML = "";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Algorithms Visualizer</title>
+    <link rel="stylesheet" href="sorting.css">
+
+</head>
+<body>
+    <header>
+        <h1>Sorting Algorithms Visualizer</h1>
+    </header>
+    <main class="container">
+        <div class="card" data-algorithm="selection">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>Selection Sort</h2>
+                    <div class="complexity">
+                        <span>Time: O(n²)</span>
+                        <span>Space: O(1)</span>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Selection Sort</h3>
+                    <p>Repeatedly selects the smallest element from the unsorted portion and places it at the beginning.</p>
+                    <ul class="complexity-list">
+                        <li><strong>Best:</strong> O(n²)</li>
+                        <li><strong>Average:</strong> O(n²)</li>
+                        <li><strong>Worst:</strong> O(n²)</li>
+                        <li><strong>Space:</strong> O(1)</li>
+                    </ul>
+                    <button class="visualize-btn" onclick="window.location.href='selection.html'">
+                        Let's learn <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-algorithm="insertion">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>Insertion Sort</h2>
+                    <div class="complexity">
+                        <span>Time: O(n²)</span>
+                        <span>Space: O(1)</span>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Insertion Sort</h3>
+                    <p>Builds the final sorted array one item at a time, efficient for small data sets.</p>
+                    <ul class="complexity-list">
+                        <li><strong>Best:</strong> O(n)</li>
+                        <li><strong>Average:</strong> O(n²)</li>
+                        <li><strong>Worst:</strong> O(n²)</li>
+                        <li><strong>Space:</strong> O(1)</li>
+                    </ul>
+                    <button class="visualize-btn" onclick="window.location.href='insertion.html'">
+                        Let's learn <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-algorithm="bubble">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>Bubble Sort</h2>
+                    <div class="complexity">
+                        <span>Time: O(n²)</span>
+                        <span>Space: O(1)</span>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Bubble Sort</h3>
+                    <p>Repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.</p>
+                    <ul class="complexity-list">
+                        <li><strong>Best:</strong> O(n)</li>
+                        <li><strong>Average:</strong> O(n²)</li>
+                        <li><strong>Worst:</strong> O(n²)</li>
+                        <li><strong>Space:</strong> O(1)</li>
+                    </ul>
+                    <button class="visualize-btn" onclick="window.location.href='bubble.html'">
+                        Let's learn <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-algorithm="merge">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>Merge Sort</h2>
+                    <div class="complexity">
+                        <span>Time: O(n log n)</span>
+                        <span>Space: O(n)</span>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Merge Sort</h3>
+                    <p>Divides the unsorted list into n sublists, repeatedly merges sublists to produce new sorted sublists until there is only one sublist remaining.</p>
+                    <ul class="complexity-list">
+                        <li><strong>Best:</strong> O(n log n)</li>
+                        <li><strong>Average:</strong> O(n log n)</li>
+                        <li><strong>Worst:</strong> O(n log n)</li>
+                        <li><strong>Space:</strong> O(n)</li>
+                    </ul>
+                    <button class="visualize-btn" onclick="window.location.href='merge.html'">
+                        Let's learn <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-algorithm="quick">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>Quick Sort</h2>
+                    <div class="complexity">
+                        <span>Time: O(n log n)</span>
+                        <span>Space: O(log n)</span>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Quick Sort</h3>
+                    <p>Selects a 'pivot' element and partitions the other elements into two sub-arrays, according to whether they are less than or greater than the pivot.</p>
+                    <ul class="complexity-list">
+                        <li><strong>Best:</strong> O(n log n)</li>
+                        <li><strong>Average:</strong> O(n log n)</li>
+                        <li><strong>Worst:</strong> O(n²)</li>
+                        <li><strong>Space:</strong> O(log n)</li>
+                    </ul>
+                    <button class="visualize-btn" onclick="window.location.href='quick.html'">
+                        Let's learn <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="visualization-container" class="hidden">
+        <h2 id="algorithm-name"></h2>
+        <div id="array-container"></div>
+        <div id="controls">
+            <button id="shuffle">Shuffle</button>
+            <button id="start">Start</button>
+            <button id="close">Close</button>
+        </div>
+    </div>
+
+</body>
+</html>

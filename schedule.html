@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Scheduling Algorithms</title>
+    <link rel="stylesheet" href="sorting.css">
+    <link rel="stylesheet" href="selection.css">
+    
+</head>
+<body>
+    <header>
+        <h1>Operating System Scheduling Algorithms</h1>
+    </header>
+    <main class="container">
+        <div class="card" data-algorithm="fcfs">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>First Come First Serve (FCFS)</h2>
+                    <div class="characteristics">
+                        <span>Non-preemptive</span>
+                        <span>Simple</span>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>First Come First Serve (FCFS)</h3>
+                    <p>Executes processes in the order they arrive in the ready queue.</p>
+                    <ul class="algorithm-details">
+                        <li><strong>Advantages:</strong> Simple to implement, fair for long processes</li>
+                        <li><strong>Disadvantages:</strong> Can lead to convoy effect, high average waiting time</li>
+                        <li><strong>Use case:</strong> Batch systems where request order is important</li>
+                    </ul>
+                    <button class="learn-btn" onclick="window.location.href='fcfs.html'">
+                        Visualize <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-algorithm="sjf">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>Shortest Job First (SJF)</h2>
+                    <div class="characteristics">
+                        <span>Can be preemptive or non-preemptive</span>
+                        <span>Optimal for average waiting time</span>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Shortest Job First (SJF)</h3>
+                    <p>Selects the process with the smallest execution time to execute next.</p>
+                    <ul class="algorithm-details">
+                        <li><strong>Advantages:</strong> Minimizes average waiting time, good for short processes</li>
+                        <li><strong>Disadvantages:</strong> Can lead to starvation of longer processes, requires knowing/estimating process execution times</li>
+                        <li><strong>Use case:</strong> Batch systems where job lengths are known in advance</li>
+                    </ul>
+                    <button class="learn-btn" onclick="window.location.href='fcfs.html'">
+                        Visualize <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-algorithm="rr">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>Round Robin (RR)</h2>
+                    <div class="characteristics">
+                        <span>Preemptive</span>
+                        <span>Fair allocation of CPU</span>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Round Robin (RR)</h3>
+                    <p>Allocates a fixed time unit per process in a cyclic way.</p>
+                    <ul class="algorithm-details">
+                        <li><strong>Advantages:</strong> Fair allocation of CPU, good for time-sharing systems</li>
+                        <li><strong>Disadvantages:</strong> Performance depends on time quantum size, higher context switch overhead</li>
+                        <li><strong>Use case:</strong> Time-sharing systems, interactive systems</li>
+                    </ul>
+                    <button class="learn-btn" onclick="window.location.href='fcfs.html'">
+                        Visualize <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-algorithm="priority">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>Priority Scheduling</h2>
+                    <div class="characteristics">
+                        <span>Can be preemptive or non-preemptive</span>
+                        <span>Based on priority values</span>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Priority Scheduling</h3>
+                    <p>Selects the process with the highest priority for execution.</p>
+                    <ul class="algorithm-details">
+                        <li><strong>Advantages:</strong> Can prioritize important processes, flexible</li>
+                        <li><strong>Disadvantages:</strong> Can lead to starvation of low-priority processes, priority inversion problem</li>
+                        <li><strong>Use case:</strong> Real-time systems, systems where process importance varies</li>
+                    </ul>
+                    <button class="learn-btn" onclick="window.location.href='fcfs.html'">
+                        Visualize <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
