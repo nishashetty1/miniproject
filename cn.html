@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Networking Concepts</title>
+    <style>
+    :root {
+        --bg: #000000;
+        --txt: #FFFFFF;
+        --accent: #FF6F91;
+        --prim: #1E90FF;
+        --sec: #8A2BE2;
+        --card-bg: #1a1a1a;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: var(--bg);
+        color: var(--txt);
+        line-height: 1.6;
+    }
+
+    header {
+        background: linear-gradient(135deg, var(--prim), var(--sec));
+        padding: 1rem;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin: 0;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .card {
+        width: 300px;
+        height: 400px;
+        perspective: 1000px;
+    }
+
+    .card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+
+    .card:hover .card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 15px;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: var(--card-bg);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-front {
+        background: linear-gradient(135deg, var(--prim), var(--sec));
+    }
+
+    .card-back {
+        background-color: var(--card-bg);
+        transform: rotateY(180deg);
+    }
+
+    h2, h3 {
+        color: var(--accent);
+        margin-bottom: 1rem;
+    }
+
+    .characteristics {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: auto;
+    }
+
+    .characteristics span {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 0.5rem;
+        border-radius: 5px;
+        margin: 0.25rem;
+    }
+
+    .algorithm-details {
+        list-style-type: none;
+        text-align: left;
+        margin-bottom: 1rem;
+    }
+
+    .algorithm-details li {
+        margin-bottom: 0.5rem;
+    }
+
+    .learn-btn {
+        background-color: var(--accent);
+        color: var(--txt);
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .learn-btn:hover {
+        background-color: var(--sec);
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 300px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Computer Networking Concepts</h1>
+    </header>
+    <main class="container">
+        <div class="card" data-concept="ip-address">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>IP Address</h2>
+                    <div class="characteristics">
+                        <span>Network Layer</span>
+                        <span>Unique Identifier</span>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>IP Address</h3>
+                    <p>A numerical label assigned to each device in a computer network that uses the Internet Protocol for communication.</p>
+                    <ul class="algorithm-details">
+                        <li><strong>Types:</strong> IPv4 (32-bit), IPv6 (128-bit)</li>
+                        <li><strong>Function:</strong> Identifies and locates devices on networks</li>
+                        <li><strong>Use case:</strong> Routing network traffic, device identification</li>
+                    </ul>
+                    <button class="learn-btn" onclick="window.location.href='ip.html'">
+                        Let's learn <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" data-concept="bit-stuffing">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>Bit Stuffing</h2>
+                    <div class="characteristics">
+                        <span>Data Link Layer</span>
+                        <span>Frame Synchronization</span>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Bit Stuffing</h3>
+                    <p>A technique used in data transmission to prevent patterns in the transmitted data from being mistaken for control information.</p>
+                    <ul class="algorithm-details">
+                        <li><strong>Process:</strong> Insert extra bits into the data stream</li>
+                        <li><strong>Purpose:</strong> Ensure data transparency and maintain synchronization</li>
+                        <li><strong>Use case:</strong> HDLC, USB communication</li>
+                    </ul>
+                    <button class="learn-btn" onclick="window.location.href='bit-stuffing.html'">
+                        Let's learn <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

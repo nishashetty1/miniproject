@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Pathfinding Algorithms</title>
+    <style>
+        :root {
+            --bg: #000000;
+            --txt: #FFFFFF;
+            --accent: #FF6F91;
+            --prim: #1E90FF;
+            --sec: #8A2BE2;
+            --card-bg: #1a1a1a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg);
+            color: var(--txt);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--prim), var(--sec));
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .algorithm-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .complexity {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .complexity span {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .visualize-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--txt);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .visualize-btn:hover {
+            background-color: var(--sec);
+        }
+
+        @media (max-width: 600px) {
+            .complexity {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .complexity span {
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AI Pathfinding Algorithms</h1>
+    </header>
+    <main>
+        <div class="algorithm-card">
+            <h2>A* (A-star) Algorithm</h2>
+            <p>A* is an informed search algorithm that finds the shortest path between two points. It uses a heuristic function to estimate the cost from any point to the goal, making it more efficient than uninformed search algorithms.</p>
+            <div class="complexity">
+                <span><strong>Time Complexity:</strong> O(b^d)</span>
+                <span><strong>Space Complexity:</strong> O(b^d)</span>
+            </div>
+            <a href="https://pfvisualizerr.netlify.app/" class="visualize-btn">Visualize A*</a>
+        </div>
+
+        <div class="algorithm-card">
+            <h2>Depth-First Search (DFS)</h2>
+            <p>DFS is an algorithm for traversing or searching tree or graph data structures. It starts at the root node and explores as far as possible along each branch before backtracking.</p>
+            <div class="complexity">
+                <span><strong>Time Complexity:</strong> O(V + E)</span>
+                <span><strong>Space Complexity:</strong> O(V)</span>
+            </div>
+            <a href="https://pfvisualizerr.netlify.app/" class="visualize-btn">Visualize DFS</a>
+        </div>
+
+        <div class="algorithm-card">
+            <h2>Breadth-First Search (BFS)</h2>
+            <p>BFS is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.</p>
+            <div class="complexity">
+                <span><strong>Time Complexity:</strong> O(V + E)</span>
+                <span><strong>Space Complexity:</strong> O(V)</span>
+            </div>
+            <a href="https://pfvisualizerr.netlify.app/" class="visualize-btn">Visualize BFS</a>
+        </div>
+
+        <div class="algorithm-card">
+            <h2>Bidirectional Search</h2>
+            <p>Bidirectional search is a graph search algorithm that finds a shortest path from an initial vertex to a goal vertex in a directed graph. It runs two simultaneous searches: one forward from the initial state and one backward from the goal, stopping when the two meet in the middle.</p>
+            <div class="complexity">
+                <span><strong>Time Complexity:</strong> O(b^(d/2))</span>
+                <span><strong>Space Complexity:</strong> O(b^(d/2))</span>
+            </div>
+            <a href="https://pfvisualizerr.netlify.app/" class="visualize-btn">Visualize Bidirectional Search</a>
+        </div>
+    </main>
+</body>
+</html>
