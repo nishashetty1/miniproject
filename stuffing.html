@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bit and Byte Stuffing</title>
+    <style>
+        :root {
+            --bg: #000000;
+            --text: #FFFFFF;
+            --accent: #FF6F91;
+            --prim: #1E90FF;
+            --sec: #8A2BE2;
+            --card-bg: #1a1a1a;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input, button, select {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--sec);
+            color: var(--text);
+            font-size: 16px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        button {
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--accent);
+        }
+
+        .result {
+            border: 1px solid var(--prim);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .result p {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: var(--card-bg);
+        }
+
+        @media (min-width: 768px) {
+            .controls {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bit and Byte Stuffing</h1>
+    
+        <div class="controls">
+            <select id="stuffingType">
+                <option value="bit">Bit Stuffing</option>
+                <option value="byte">Byte Stuffing</option>
+            </select>
+            <input type="text" id="dataInput" placeholder="Enter data">
+            <button id="processBtn">Process Data</button>
+        </div>
+    
+        <div class="result">
+            <p id="stuffedDataOutput"></p>
+            <p id="destuffedDataOutput"></p>
+        </div>
+    </div>
+
+    <script>
+        // Bit Stuffing
+        const BIT_FLAG = "01111110";
+
+        function bitStuffing(data) {
+            let stuffedData = BIT_FLAG;
+            let consecutiveOnes = 0;
+
+            for (let i = 0; i < data.length; i++) {
+                let bit = data[i];
+                stuffedData += bit;
+
+                if (bit === '1') {
+                    consecutiveOnes++;
+                    if (consecutiveOnes === 5) {
+                        stuffedData += '0';
+                        consecutiveOnes = 0;
+                    }
+                } else {
+                    consecutiveOnes = 0;
+                }
+            }
+
+            stuffedData += BIT_FLAG;
+            return stuffedData;
+        }
+
+        function bitDestuffing(stuffedData) {
+            if (!stuffedData.startsWith(BIT_FLAG) || !stuffedData.endsWith(BIT_FLAG)) {
+                return "Invalid data: Missing FLAG at start or end.";
+            }
+
+            let data = stuffedData.slice(BIT_FLAG.length, stuffedData.length - BIT_FLAG.length);
+            let destuffedData = "";
+            let consecutiveOnes = 0;
+
+            for (let i = 0; i < data.length; i++) {
+                let bit = data[i];
+
+                if (bit === '1') {
+                    consecutiveOnes++;
+                    destuffedData += bit;
+                    if (consecutiveOnes === 5) {
+                        i++; // Skip the stuffed '0'
+                        consecutiveOnes = 0;
+                    }
+                } else {
+                    consecutiveOnes = 0;
+                    destuffedData += bit;
+                }
+            }
+
+            return destuffedData;
+        }
+
+        // Byte Stuffing
+        const BYTE_FLAG = "DLESTX";
+        const END_FLAG = "DLEETX";
+        const ESC = "ESC";
+
+        function byteStuffing(data) {
+            let stuffedData = BYTE_FLAG;
+    
+            for (let i = 0; i < data.length; i++) {
+                let byte = data[i];
+        
+                if (byte === BYTE_FLAG || byte === END_FLAG || byte === ESC) {
+                    stuffedData += ESC;
+                }
+        
+                stuffedData += byte;
+            }
+
+            stuffedData += END_FLAG;
+            return stuffedData;
+        }
+
+        function byteDestuffing(stuffedData) {
+            if (!stuffedData.startsWith(BYTE_FLAG) || !stuffedData.endsWith(END_FLAG)) {
+                return "Invalid data: Missing FLAG at start or end.";
+            }
+
+            let data = stuffedData.slice(BYTE_FLAG.length, stuffedData.length - END_FLAG.length);
+            let destuffedData = "";
+            let escFlag = false;
+
+            for (let i = 0; i < data.length; i++) {
+                let byte = data[i];
+
+                if (byte === ESC) {
+                    escFlag = true;
+                    continue;
+                }
+
+                if (escFlag) {
+                    destuffedData += byte;
+                    escFlag = false;
+                } else {
+                    destuffedData += byte;
+                }
+            }
+
+            return destuffedData;
+        }
+
+        // UI Interaction
+        const stuffingType = document.getElementById("stuffingType");
+        const dataInput = document.getElementById("dataInput");
+        const processBtn = document.getElementById("processBtn");
+        const stuffedDataOutput = document.getElementById("stuffedDataOutput");
+        const destuffedDataOutput = document.getElementById("destuffedDataOutput");
+
+        processBtn.addEventListener("click", processData);
+
+        function processData() {
+            const data = dataInput.value.trim();
+            let stuffedData, destuffedData;
+
+            if (stuffingType.value === "bit") {
+                stuffedData = bitStuffing(data);
+                destuffedData = bitDestuffing(stuffedData);
+            } else {
+                stuffedData = byteStuffing(data);
+                destuffedData = byteDestuffing(stuffedData);
+            }
+
+            stuffedDataOutput.innerHTML = `<strong>Stuffed Data:</strong> ${stuffedData}`;
+            destuffedDataOutput.innerHTML = `<strong>Destuffed Data:</strong> ${destuffedData}`;
+        }
+    </script>
+</body>
+</html>
